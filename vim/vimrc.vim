@@ -27,16 +27,18 @@ Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
+Plugin 'ctlpvim/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'gioele/vim-autoswap'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'artur-shaik/vim-javacomplete2'
+" Plugin 'vim-scripts/taglist.vim'
+" Plugin 'artur-shaik/vim-javacomplete2'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
