@@ -51,5 +51,5 @@ fi
 source ~/dotfiles/zsh/prompt.sh
 
 # ATLI {
-source ~/aliases
+source ~/dotfiles/aliases
 # ATLI }
