@@ -49,15 +49,15 @@ filetype plugin indent on    " required
 	syntax on
 	let mapleader=","
 	set autoindent
-	set dir=/tmp/
+	set dir=/tmp/,~/tmp,~/.tmp
 	set nowrap 
 	set number
 	set relativenumber 
 	set updatetime=250
 	set shiftwidth=4
 	set tabstop=4
-	set scrolloff=5
-	set cursorline
+	set scrolloff=1
+	set cursorline!
 	set ignorecase
 	set incsearch
 	set hlsearch
@@ -69,6 +69,9 @@ filetype plugin indent on    " required
 	set backupdir=~/.vim/backup//
 	set directory=~/.vim/swap//
 	set undodir=~/.vim/undo//
+	set winheight=30
+	set winminheight=5
+
 	colorscheme desert
 
 	hi Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
@@ -98,6 +101,15 @@ filetype plugin indent on    " required
 			set clipboard=unnamed
 		endif
 	endif
+
+" Auto resize windows
+	nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+	nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+
+	nnoremap <C-h> <C-w>h
+	nnoremap <C-j> <C-w>j
+	nnoremap <C-k> <C-w>k
+	nnoremap <C-l> <C-w>l
 
 " Toggle current fold with space
 	nnoremap <Space> za
@@ -134,8 +146,7 @@ if executable('ag')
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-	" ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
+	let g:ctrlp_use_caching = 1
 endif
 
 
