@@ -8,12 +8,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Atli 
 Plugin 'prabirshrestha/async.vim'
@@ -26,11 +26,11 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
 Plugin 'ctlpvim/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 " Plugin 'honza/vim-snippets'
@@ -150,20 +150,21 @@ nnoremap \ :Ag<SPACE>
 
 
 " NERDTree settings
-	" open a NERDTree automatically when vim starts up if no files were specified
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	" " open a NERDTree automatically when vim starts up if no files were specified
+	" autocmd StdinReadPre * let s:std_in=1
+	" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-	" open NERDTree automatically when vim starts up on opening a directory
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+	" " open NERDTree automatically when vim starts up on opening a directory
+	" autocmd StdinReadPre * let s:std_in=1
+	" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 	" How can I map a specific key or shortcut to open NERDTree?
 	map <leader>n :NERDTreeToggle<CR>
 	map <leader>N :NERDTreeFind<CR>
 
-	" Autoclose vim if NERDTree is the last open window
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Not working:
+" " " Autoclose vim if NERDTree is the last open window
+	" autocmd BufEnter * if (winnr("$") == 0 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 autocmd Filetype java compiler mvn
 autocmd Filetype pom compiler mvn
@@ -200,9 +201,9 @@ autocmd Filetype pom compiler mvn
 "         \ 'whitelist': ['python'],
 "         \ })
 
-autocmd bufwritepost .vimrc source $MYVIMRC
+" autocmd bufwritepost .vimrc source $MYVIMRC
 
-autocmd bufwritepost aliases source aliases
+" autocmd bufwritepost aliases source aliases
 
 " This one gives the autocomplete from java base libraries:
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
