@@ -1,0 +1,63 @@
+#!/bin/bash
+
+if [ -f "aliases.local" ]; then
+	source ~/aliases.local
+fi 
+
+alias mux='tmuxinator'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+
+# enable color support of ls and also add handy aliases
+alias ls='ls --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias ll="ls -lhA --color=auto"
+alias sl="ls --color=auto"
+alias lsl="ls -lhFA --color=auto | less"
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# some folder shortcuts 
+alias vrc='vim ~/.vimrc'
+alias brc='vim ~/.bashrc'
+
+# Various
+alias cd..="cd .."
+alias rd="rmdir"
+alias du="du -ach | sort -h"
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+alias gs="git status"
+alias gl="git log --branches --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gc="git commit"
+alias gci="git commit --interactive"
+alias gau="git add --update"
+alias gai="git add --interactive"
+
+# associate file ending
+alias -s java=vim
+
+# grepping by using gp after command
+alias -g gp='| grep -i'
+
+# Process information
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+alias top=htop
+
+# Docker
+dcleanup(){
+	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+
+
