@@ -43,10 +43,10 @@ alias gau="git add --update"
 alias gai="git add --interactive"
 
 # associate file ending
-alias -s java=vim
+alias java=vim
 
 # grepping by using gp after command
-alias -g gp='| grep -i'
+alias gp='| grep -i'
 
 # Process information
 alias ps="ps auxf"
