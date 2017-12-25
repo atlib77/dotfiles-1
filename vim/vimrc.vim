@@ -16,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Atli 
+Plugin 'tmux-plugins/vim-tmux'
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'tpope/vim-sensible'
