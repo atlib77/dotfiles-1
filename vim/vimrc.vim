@@ -28,7 +28,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 " Plugin 'kien/ctrlp.vim'
-Plugin 'ctlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 " Plugin 'valloric/youcompleteme'
@@ -50,7 +50,7 @@ filetype plugin indent on    " required
 syntax on
 let mapleader=","
 set autoindent
-set dir=/tmp/,~/tmp,~/.tmp
+set dir=~/tmp,~/.tmp,/tmp/,
 set nowrap 
 set number
 set relativenumber 
