@@ -49,27 +49,34 @@ filetype plugin indent on    " required
 " General Vim settings
 syntax on
 let mapleader=","
+set autochdir
 set autoindent
-set dir=~/tmp,~/.tmp,/tmp/,
-set nowrap 
-set number
-set relativenumber 
-set updatetime=250
-set shiftwidth=4
-set tabstop=4
-set scrolloff=1
+set backupdir=~/.vim/backup//
 set cursorline!
+set dir=~/tmp,~/.tmp,/tmp/,
+set directory=~/.vim/swap//
+set fileignorecase
+set hlsearch
 set ignorecase
 set incsearch
-set hlsearch
 set listchars=tab:\|\ 
-set pastetoggle=<F2>
 set mouse=a
 set mousehide
-set autochdir
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+set nowrap 
+set number
+set pastetoggle=<F2>
+set relativenumber 
+set scrolloff=1
+set shiftwidth=2
+set showcmd 
+set smartcase
+set smartindent
+set smarttab
+set softtabstop=4
+set tabstop=4
 set undodir=~/.vim/undo//
+set updatetime=250
+set wildignore+=*/.git/*,*/.svn/*,*/tmp/*,*/target/*,*/build/*,*/debug/*,*.so,*.swp,*.zip,*.jar,*.war,*.dtd
 set winheight=30
 set winminheight=5
 
@@ -144,17 +151,23 @@ nnoremap <leader>s :split<CR>:w<CR>:Ex<CR>
 " The Silver Searcher
 if executable('ag')
 	" Use ag over grep
+    let g:ackprg = 'ag --nogroup --nocolor --column --vimgrep'
 	set grepprg=ag\ --nogroup\ --nocolor
 
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-	let g:ctrlp_use_caching = 1
+	let g:ctrlp_use_caching = 0
 endif
 
 
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
 			\ 'changes', 'mixed', 'bookmarkdir']
+
+" CTRL-P plugin configuration
+" let g:ctrlp_working_path_mode = 'cra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = ''
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -222,5 +235,3 @@ let g:autoswap_detect_tmux = 1
 " This one gives the autocomplete from java base libraries:
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " autocmd FileType java setlocal omnifunc=
-
-
