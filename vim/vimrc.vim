@@ -9,48 +9,46 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 " Atli 
+" Plugin 'honza/vim-snippets'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'valloric/youcompleteme'
+" Plugin 'vim-scripts/taglist.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'bling/vim-airline'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'gioele/vim-autoswap'
 Plugin 'godlygeek/tabular'
-Plugin 'tmux-plugins/vim-tmux'
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-commentary'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-" Plugin 'kien/ctrlp.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-" Plugin 'valloric/youcompleteme'
+Plugin 'tfnico/vim-gradle'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'easymotion/vim-easymotion'
-" Plugin 'honza/vim-snippets'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'gioele/vim-autoswap'
-" Plugin 'vim-scripts/taglist.vim'
-" Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'vim-scripts/zoomwin'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
 " General Vim settings
 syntax on
-let mapleader=","
-set autochdir
 set autoindent
 set backupdir=~/.vim/backup//
 set cursorline!
@@ -75,33 +73,15 @@ set smartindent
 set smarttab
 set softtabstop=4
 set tabstop=4
+set title titlestring=
 set undodir=~/.vim/undo//
 set updatetime=250
 set wildignore+=*/.git/*,*/.svn/*,*/tmp/*,*/target/*,*/build/*,*/debug/*,*.so,*.swp,*.zip,*.jar,*.war,*.dtd
 set winheight=30
-set winminheight=5
-
+set winminheight=3
 colorscheme desert
 
-hi Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
-
-" This one conflicted with Ctlr-o and Cltr-l (for jumping through the
-" :jumps list)
-" nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
-
-" When searching for next match, center the line on the screen
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-nnoremap H 0
-nnoremap L $
-" nnoremap J <C-f>
-" nnoremap K <C-b> 
-
-map <tab> %
-imap jk <ESC>
-
-autocmd FileType help noremap <buffer> q :q<cr>
+highlight Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 
 if has('clipboard')
 	if has('unnamedplus')  " When possible use + register for copy-paste
@@ -111,44 +91,6 @@ if has('clipboard')
 	endif
 endif
 
-" Auto resize windows
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
-
-
-" Move around windows 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Toggle current fold with space
-nnoremap <Space> za
-nnoremap <leader>z zMzvzz
-
-nnoremap vv 0v$
-
-nnoremap <leader><tab> :set list!<cr>
-
-" File and Window Management 
-"  Save file  
-inoremap <leader>w <Esc>:w<CR>
-nnoremap <leader>w :w<CR>
-
-" Close window 
-inoremap <leader>q <ESC>:q<CR>
-nnoremap <leader>q :q<CR>
-
-" Hard close
-inoremap <leader>x <ESC>:x<CR>
-nnoremap <leader>x :x<CR>
-
-" Ex command mode
-nnoremap <leader>e :Ex<CR>
-nnoremap <leader>t :tabnew<CR>:Ex<CR>
-nnoremap <leader>v :vsplit<CR>:w<CR>:Ex<CR>
-nnoremap <leader>s :split<CR>:w<CR>:Ex<CR>
-
 " The Silver Searcher
 if executable('ag')
 	" Use ag over grep
@@ -157,13 +99,7 @@ if executable('ag')
 
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-	let g:ctrlp_use_caching = 0
 endif
-
-
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
-			\ 'changes', 'mixed', 'bookmarkdir']
 
 " CTRL-P plugin configuration
 " let g:ctrlp_working_path_mode = 'cra'
@@ -172,30 +108,12 @@ let g:ctrlp_custom_ignore = ''
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
+
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
-nnoremap \ :Ag<SPACE>
-
-
-" NERDTree settings
-" " open a NERDTree automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" " open NERDTree automatically when vim starts up on opening a directory
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" How can I map a specific key or shortcut to open NERDTree?
-map <leader>n :NERDTreeToggle<CR>
-map <leader>N :NERDTreeFind<CR>
-
-" Not working:
-" " " Autoclose vim if NERDTree is the last open window
-" autocmd BufEnter * if (winnr("$") == 0 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-autocmd Filetype java compiler mvn
-autocmd Filetype pom compiler mvn
 
 
 " vim-airline
@@ -208,31 +126,57 @@ let g:airline_powerline_fonts=1
 " let g:airline_symbols = {}
 " endif
 let g:airline#extensions#tabline#enabled = 1  
-
-" vim-autoswap
-set title titlestring=
+let g:airline#extensions#tabline#fnamecollapse = 0
 let g:autoswap_detect_tmux = 1
 
-" vim-lsp - No success with this yet:
-" if executable('docker-langserver')
-" 	au User lsp_setup call lsp#register_server({
-" 				\ 'name': 'docker-langserver',
-" 				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-" 				\ 'whitelist': ['dockerfile','Dockerfile'],
-" 				\ })
-" endif
-
-
-" au User lsp_setup call lsp#register_server({
-"         \ 'name': 'jals',
-"         \ 'cmd': {server_info->['~/github/start-java-lang-server']},
-"         \ 'whitelist': ['python'],
-"         \ })
-
+autocmd FileType help noremap <buffer> q :q<cr>
+" autocmd Filetype java compiler mvn
+" autocmd Filetype pom compiler mvn
+autocmd FileType java setlocal omnifunc=javacomplete#Complete " This one gives the autocomplete from java base libraries
+" autocmd FileType java setlocal omnifunc=
 " autocmd bufwritepost .vimrc source $MYVIMRC
-
 " autocmd bufwritepost aliases source aliases
-
 " This one gives the autocomplete from java base libraries:
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " autocmd FileType java setlocal omnifunc=
+" Auto resize windows
+" Move around windows 
+" Toggle current fold with space
+" File and Window Management 
+" When searching for next match, center the line on the screen
+" This one conflicted with Ctlr-o and Cltr-l (for jumping through the
+" :jumps list)
+" nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
+let mapleader=","
+imap jk <ESC>
+inoremap <leader>q <ESC>:q<CR>
+inoremap <leader>w <Esc>:w<CR>
+inoremap <leader>x <ESC>:x<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>N :NERDTreeFind<CR>
+map <tab> %
+" nnoremap : ;
+" vnoremap : ;
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Spreace> za
+nnoremap <leader><tab> :set list!<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>e :Ex<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>s :split<CR>:w<CR>:Ex<CR>
+nnoremap <leader>t :tabnew<CR>:Ex<CR>
+nnoremap <leader>v :vsplit<CR>:w<CR>:Ex<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>z zMzvzz
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap H 0
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap L $
+nnoremap N Nzzzv
+nnoremap \ :Ag<SPACE>
+nnoremap vv 0v$
