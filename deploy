@@ -5,6 +5,9 @@ stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ; then
+    rm ~/.zshrc
+    rm ~/.vimrc
+    rm ~/.tmux.conf
 	ln -s ~/dotfiles/zsh/zshrc_manager.sh ~/.zshrc
 	ln -s ~/dotfiles/vim/vimrc.vim ~/.vimrc
 	ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
