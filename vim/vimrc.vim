@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime ath to include Vundle and initialize
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -41,6 +41,7 @@ Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/zoomwin'
 Plugin 'tommcdo/vim-exchange'
+
 " All of your Plugins must be added before the following line
  call vundle#end()            " required
 filetype plugin indent on    " required
@@ -78,10 +79,17 @@ set undodir=~/.vim/undo//
 set updatetime=250
 set wildignore+=*/.git/*,*/.svn/*,*/tmp/*,*/target/*,*/build/*,*/debug/*,*.so,*.swp,*.zip,*.jar,*.war,*.dtd
 set winheight=30
+silent! set winminheight=5
 set winminheight=3
+set wildignorecase
+set wildmenu
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 colorscheme desert
 
-highlight Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
+" highlight Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 
 if has('clipboard')
 	if has('unnamedplus')  " When possible use + register for copy-paste
@@ -114,6 +122,12 @@ let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'bufferta
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
 
 
 " vim-airline
