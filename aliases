@@ -62,4 +62,5 @@ dcleanup(){
 	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
-
+alias gr=gradle
+alias gralde=gradle
