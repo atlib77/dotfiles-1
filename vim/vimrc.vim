@@ -107,11 +107,13 @@ if executable('ag')
 
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+	let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 endif
 
 " CTRL-P plugin configuration
 " let g:ctrlp_working_path_mode = 'cra'
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 1
 let g:ctrlp_custom_ignore = ''
 
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -162,7 +164,6 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " :jumps list)
 " nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 let mapleader=","
-imap jk <ESC>
 inoremap <leader>q <ESC>:q<CR>
 inoremap <leader>w <Esc>:w<CR>
 inoremap <leader>x <ESC>:x<CR>
@@ -194,3 +195,54 @@ nnoremap L $
 nnoremap N Nzzzv
 nnoremap \ :Ag<SPACE>
 nnoremap vv 0v$
+
+" imap jk <ESC>
+nnoremap <C-I> :call VimLock(1)<CR>i
+function! VimLock(enable)
+  if a:enable
+	" For right hand use
+	inoremap j 1
+    inoremap k 2
+    inoremap l 3
+    inoremap u 4
+    inoremap i 5
+    inoremap o 6
+	" For left  hand use
+	inoremap q 4
+    inoremap w 5
+    inoremap e 6
+    inoremap a 7
+    inoremap s 8
+    inoremap d 9
+    inoremap z 0
+    inoremap x ,
+    inoremap c .
+	" Stop using the numpad
+    inoremap <Esc> <Esc>:call VimLock(0)<CR>
+  else
+    iunmap j
+    iunmap k
+    iunmap l
+    iunmap u
+    iunmap i
+    iunmap o
+	iunmap q
+	iunmap w
+	iunmap e
+	iunmap a
+	iunmap s
+	iunmap d
+	iunmap z
+	iunmap x
+	iunmap c
+    iunmap <Esc>
+  endif
+endfunction
+
+nmap <F5> :exec '!'.getline('.')
+imap <F5> :exec '!'.getline('.')
+
+" let g:sw_config_dir = 'C:/Users/atbo/.sqlworkbench/'
+" let g:sw_exe = 'C:/users/atbo/sqlworkbench/sqlwbconsole.exe'
+" let g:sw_plugin_path = 'c:/Users/atbo/.vim/bundle/vim-sql-workbench/'
+" let g:sw_tmp = 'C:/users/atbo/.tmp'
