@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ -f "aliases.local" ]; then
+if [ -f "~/aliases.local" ]; then
 	source ~/aliases.local
 fi 
 
 alias mux='tmuxinator'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-
+alias r='ranger'
 
 # enable color support of ls and also add handy aliases
 alias ls='ls --color=auto'
