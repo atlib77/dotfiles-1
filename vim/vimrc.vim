@@ -21,11 +21,14 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'bling/vim-airline'
+Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'gioele/vim-autoswap'
 Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
 Plugin 'prabirshrestha/async.vim'
+Plugin 'cosminadrianpopescu/vim-sql-workbench'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -41,7 +44,8 @@ Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/zoomwin'
 Plugin 'tommcdo/vim-exchange'
-
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 " All of your Plugins must be added before the following line
  call vundle#end()            " required
 filetype plugin indent on    " required
@@ -69,10 +73,11 @@ set relativenumber
 set scrolloff=1
 set shiftwidth=2
 set showcmd 
-set smartcase
-set smartindent
+set showmatch
 set smarttab
 set softtabstop=4
+set splitbelow
+set splitright
 set tabstop=4
 set title titlestring=
 set undodir=~/.vim/undo//
@@ -99,12 +104,8 @@ if has('clipboard')
 	endif
 endif
 
-" The Silver Searcher
+" " The Silver Searcher
 if executable('ag')
-	" Use ag over grep
-    let g:ackprg = 'ag --nogroup --nocolor --column --vimgrep'
-	set grepprg=ag\ --nogroup\ --nocolor
-
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 else
@@ -114,13 +115,13 @@ endif
 " CTRL-P plugin configuration
 " let g:ctrlp_working_path_mode = 'cra'
 let g:ctrlp_use_caching = 1
+let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = ''
-
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_use_caching = 1
-let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
+" let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
+let g:ctrlp_extensions = ['branch', 'tabline', 'sw_profiles']
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
@@ -134,6 +135,8 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 " vim-airline
 let g:airline_powerline_fonts=1
+let g:airline_extensions = ['ctrlp', 'quickfix', 'tabline']
+
 " let g:airline_right_alt_sep = ''    
 " let g:airline_right_sep = ''
 " let g:airline_left_alt_sep= ''
@@ -172,6 +175,8 @@ map <leader>N :NERDTreeFind<CR>
 map <tab> %
 " nnoremap : ;
 " vnoremap : ;
+nmap <F8> :TagbarToggle<CR>
+
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -239,10 +244,16 @@ function! VimLock(enable)
   endif
 endfunction
 
-nmap <F5> :exec '!'.getline('.')
-imap <F5> :exec '!'.getline('.')
+nmap <F5> :exec '!'.getline('.')<cr>
+imap <F5> :exec '!'.getline('.')<cr>
 
-" let g:sw_config_dir = 'C:/Users/atbo/.sqlworkbench/'
-" let g:sw_exe = 'C:/users/atbo/sqlworkbench/sqlwbconsole.exe'
-" let g:sw_plugin_path = 'c:/Users/atbo/.vim/bundle/vim-sql-workbench/'
-" let g:sw_tmp = 'C:/users/atbo/.tmp'
+let g:sw_tmp = "/home/atli/.tmp"
+let g:sw_cache = "/home/atli/.tmp/sw" 
+let g:sw_config_dir = "/home/atli/.sqlworkbench/"
+let g:sw_exe = "/home/atli/sqlworkbench/sqlwbconsole.sh" 
+let g:sw_log_to_file = 1
+let g:sw_plugin_path = "/home/atli/.vim/bundle/vim-sql-workbench/"
+
+
+autocmd FileType java nnoremap <buffer> <F5> :Dispatch !gradle build<cr>
+autocmd FileType java nnoremap <buffer> <F6> :Dispatch !gradle run<cr>
