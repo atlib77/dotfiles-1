@@ -4,7 +4,6 @@ if [ -f "~/aliases.local" ]; then
 	source ~/aliases.local
 fi 
 
-alias mux='tmuxinator'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias r='ranger'
 
@@ -37,14 +36,11 @@ alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias ........='cd ../../../../../../..'
 alias .........='cd ../../../../../../../..'
-alias ..6='cd ../../../../../..'
-alias ..9='cd ../../../../../../../../..'
 
 alias gs="git status"
 alias gl="git log --branches --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gc="git commit"
 alias gci="git commit --interactive"
-alias gau="git add --update"
 alias gai="git add --interactive"
 
 # grepping by using gp after command
@@ -55,12 +51,3 @@ alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias top=htop
-
-# Docker
-dcleanup(){
-	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
-	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
-}
-
-alias gr=gradle
-alias gralde=gradle
