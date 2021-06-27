@@ -4,8 +4,18 @@ if [ -f "~/aliases.local" ]; then
 	source ~/aliases.local
 fi 
 
+alias s-aliases="source ~/dotfiles/aliases"
+alias c-aliases="vim ~/dotfiles/aliases; s-aliases"
+alias c-vim="vim ~/.vimrc"
+alias c-bash="vim ~/.bashrc"
+alias c-ssh="vim ~/.ssh/config"
+alias c-ranger="ranger ~/.config/ranger/"
+alias c-git-local="git config -e --local"
+alias c-git-global="git config -e --global"
+alias c-git-system="git config -e --system"
+
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias r='ranger'
+alias r='source ranger' # by sourcing ranger, when we quit ranger, we are left in the active directory, instead of the beginning directory
 
 # enable color support of ls and also add handy aliases
 alias ls='ls --color=auto'
@@ -42,6 +52,7 @@ alias gl="git log --branches --graph --pretty=format:'%Cred%h%Creset -%C(yellow)
 alias gc="git commit"
 alias gci="git commit --interactive"
 alias gai="git add --interactive"
+alias gcod="git checkout develop"
 
 # grepping by using gp after command
 alias gp='| grep -i'
