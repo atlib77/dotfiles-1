@@ -1,13 +1,10 @@
 #!/bin/bash
 
-if [ -f "~/aliases.local" ]; then
-	source ~/aliases.local
-fi 
-
 alias s-aliases="source ~/dotfiles/aliases"
-alias c-aliases="vim ~/dotfiles/aliases; s-aliases"
+alias c-aliases="vim ~/dotfiles/aliases; s-aliases; echo aliases auto-sourced"
+alias c-kitty="vim ~/.config/kitty/kitty.conf"
 alias c-vim="vim ~/.vimrc"
-alias c-bash="vim ~/.bashrc"
+alias c-bash="vim ~/.bashrc; echo .bashrc auto-sourced"
 alias c-ssh="vim ~/.ssh/config"
 alias c-ranger="ranger ~/.config/ranger/"
 alias c-git-local="git config -e --local"
