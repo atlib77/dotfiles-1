@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# fasd shortcuts
+alias v='vim `f $1*`'
+
 alias s-aliases="source ~/dotfiles/aliases"
 alias c-aliases="vim ~/dotfiles/aliases; s-aliases; echo aliases auto-sourced"
 alias c-kitty="vim ~/.config/kitty/kitty.conf"
@@ -13,13 +16,14 @@ alias c-git-system="git config -e --system"
 
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias r='source ranger' # by sourcing ranger, when we quit ranger, we are left in the active directory, instead of the beginning directory
+alias m="make"
 
 # enable color support of ls and also add handy aliases
-alias ls='ls --color=auto'
+alias ls='ls -h --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
-alias ll="ls -lhA --color=auto"
-alias sl="ls --color=auto"
+alias ll="ls -lhA --group-directories-first --color=auto"
+alias sl="ls"
 alias lsl="ls -lhFA --color=auto | less"
 
 alias grep='grep --color=auto'
@@ -50,6 +54,7 @@ alias gc="git commit"
 alias gci="git commit --interactive"
 alias gai="git add --interactive"
 alias gcod="git checkout develop"
+alias gd="git diff --ignore-all-space --ignore-blank-lines"
 
 # grepping by using gp after command
 alias gp='| grep -i'
