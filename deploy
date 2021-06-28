@@ -1,11 +1,11 @@
 echo
-echo -n "Would you like to create symbolic links for .vimrc, .tmux.conf and .zshrc? (y/n) "
+echo -n "Would you like to create symbolic links for .vimrc, .tmux.conf and .bashrc? (y/n) "
 old_stty_cfg=$(stty -g)
 stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ; then
-	ln -s ~/dotfiles/zsh/zshrc_manager.sh ~/.zshrc
+	ln -s ~/dotfiles/bash/bashrc ~/.bashrc
 	ln -s ~/dotfiles/vim/vimrc.vim ~/.vimrc
 	ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 fi

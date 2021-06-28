@@ -26,11 +26,12 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# some folder shortcuts 
-alias vrc='vim ~/.vimrc'
-alias brc='vim ~/.bashrc'
-
 # Various
+function c() {
+  cd $1;
+  ls;
+}
+alias cd="c"
 alias cd..="cd .."
 alias rd="rmdir"
 alias du="du -ach | sort -h"
