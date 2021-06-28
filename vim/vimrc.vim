@@ -55,10 +55,10 @@ filetype plugin indent on    " required
 " General Vim settings
 syntax on
 set autoindent
-set backupdir=~/.vim/backup//
+set backupdir=~/.vim/backup/
 set cursorline!
 set dir=~/tmp,~/.tmp,/tmp/,
-set directory=~/.vim/swap//
+" set directory=~/.vim/swap/
 set fileignorecase
 set hlsearch
 set ignorecase
@@ -74,6 +74,8 @@ set scrolloff=1
 set shiftwidth=2
 set showcmd 
 set showmatch
+set smartcase
+set smartindent
 set smarttab
 set softtabstop=4
 set splitbelow
@@ -104,10 +106,15 @@ if has('clipboard')
 	endif
 endif
 
-" " The Silver Searcher
-if executable('ag')
-	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" The Silver Searcher
+if executable('ack')
+	" Use ack over grep
+
+    let g:ackprg = 'ack --nogroup --nocolor --column --vimgrep'
+	set grepprg=ack\ --nogroup\ --nocolor
+
+	" Use ack in CtrlP for listing files. Lightning fast and respects .gitignore
+	let g:ctrlp_user_command = 'ack %s -l --nocolor -g ""'
 else
 	let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 endif
@@ -115,13 +122,14 @@ endif
 " CTRL-P plugin configuration
 " let g:ctrlp_working_path_mode = 'cra'
 let g:ctrlp_use_caching = 1
-let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = ''
+
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_use_caching = 1
 " let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
-let g:ctrlp_extensions = ['branch', 'tabline']
+" let g:ctrlp_extensions = ['branch', 'tabline']
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
@@ -181,6 +189,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <Space> za
 nnoremap <leader><tab> :set list!<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>e :Ex<CR>
@@ -200,6 +209,10 @@ nnoremap N Nzzzv
 nnoremap \ :ack<SPACE>
 nnoremap vv 0v$
 
-nmap <F5> :exec '!'.getline('.')<cr>
-imap <F5> :exec '!'.getline('.')<cr>
+nmap <F5> :exec '!'.getline('.')
+imap <F5> :exec '!'.getline('.')
 
+" let g:sw_config_dir = 'C:/Users/atbo/.sqlworkbench/'
+" let g:sw_exe = 'C:/users/atbo/sqlworkbench/sqlwbconsole.exe'
+" let g:sw_plugin_path = 'c:/Users/atbo/.vim/bundle/vim-sql-workbench/'
+" let g:sw_tmp = 'C:/users/atbo/.tmp'
