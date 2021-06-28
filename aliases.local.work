@@ -1,0 +1,11 @@
+# Tortoise visual version of git commands
+alias tcommit='TortoiseGitProc.exe /command:commit &'
+alias tlog='TortoiseGitProc.exe /command:log &'
+
+# common locations
+gdir=~/dev
+alias track="cd $gdir/track/aggregator-poms/"
+alias cms="cd $gdir/cms"
+alias nfm="cd $gdir/nfm/"
+alias meta="cd $gdir/meta/"
+alias mtr="cd $gdir/mtr/"
