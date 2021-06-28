@@ -1,12 +1,18 @@
 #!/bin/bash
 
-if [ -f "aliases.local" ]; then
-	source ~/aliases.local
-fi 
+alias s-aliases="source ~/dotfiles/aliases"
+alias c-aliases="vim ~/dotfiles/aliases; s-aliases; echo aliases auto-sourced"
+alias c-kitty="vim ~/.config/kitty/kitty.conf"
+alias c-vim="vim ~/.vimrc"
+alias c-bash="vim ~/.bashrc; echo .bashrc auto-sourced"
+alias c-ssh="vim ~/.ssh/config"
+alias c-ranger="ranger ~/.config/ranger/"
+alias c-git-local="git config -e --local"
+alias c-git-global="git config -e --global"
+alias c-git-system="git config -e --system"
 
-alias mux='tmuxinator'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-
+alias r='source ranger' # by sourcing ranger, when we quit ranger, we are left in the active directory, instead of the beginning directory
 
 # enable color support of ls and also add handy aliases
 alias ls='ls --color=auto'
@@ -37,15 +43,13 @@ alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias ........='cd ../../../../../../..'
 alias .........='cd ../../../../../../../..'
-alias ..6='cd ../../../../../..'
-alias ..9='cd ../../../../../../../../..'
 
 alias gs="git status"
 alias gl="git log --branches --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gc="git commit"
 alias gci="git commit --interactive"
-alias gau="git add --update"
 alias gai="git add --interactive"
+alias gcod="git checkout develop"
 
 # grepping by using gp after command
 alias gp='| grep -i'
@@ -55,12 +59,3 @@ alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias top=htop
-
-# Docker
-dcleanup(){
-	docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
-	docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
-}
-
-alias gr=gradle
-alias gralde=gradle
