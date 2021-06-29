@@ -27,12 +27,12 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'gioele/vim-autoswap'
 Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
-Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/async.vim'
 Plugin 'cosminadrianpopescu/vim-sql-workbench'
-Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'prabirshrestha/vim-lsp'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'tfnico/vim-gradle'
+" Plugin 'tfnico/vim-gradle'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
@@ -83,7 +83,7 @@ set title titlestring=
 set undodir=~/.vim/undo//
 set updatetime=250
 set wildignore+=*/.git/*,*/.svn/*,*/tmp/*,*/target/*,*/build/*,*/debug/*,*.so,*.swp,*.zip,*.jar,*.war,*.dtd
-set winheight=30
+set winheight=10
 silent! set winminheight=5
 set winminheight=3
 set wildignorecase
@@ -115,16 +115,16 @@ endif
 " CTRL-P plugin configuration
 " let g:ctrlp_working_path_mode = 'cra'
 let g:ctrlp_use_caching = 1
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_custom_ignore = ''
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = 'node_modules'
 
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_use_caching = 1
 " let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
-let g:ctrlp_extensions = ['branch', 'tabline', 'sw_profiles']
+" let g:ctrlp_extensions = ['branch', 'tabline', 'sw_profiles']
+let g:ctrlp_extensions = ['branch', 'tabline']
 
-" bind \ (backward slash) to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
+" " bind \ (backward slash) to grep shortcut
+" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -149,12 +149,6 @@ let g:airline#extensions#tabline#fnamecollapse = 0
 let g:autoswap_detect_tmux = 1
 
 autocmd FileType help noremap <buffer> q :q<cr>
-" autocmd Filetype java compiler mvn
-" autocmd Filetype pom compiler mvn
-autocmd FileType java setlocal omnifunc=javacomplete#Complete " This one gives the autocomplete from java base libraries
-" autocmd FileType java setlocal omnifunc=
-" autocmd bufwritepost .vimrc source $MYVIMRC
-" autocmd bufwritepost aliases source aliases
 " This one gives the autocomplete from java base libraries:
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " autocmd FileType java setlocal omnifunc=
@@ -184,9 +178,9 @@ nnoremap <C-l> <C-w>l
 nnoremap <Spreace> za
 nnoremap <leader><tab> :set list!<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
-nnoremap <leader>e :Ex<CR>
+" nnoremap <leader>e :Ex<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>s :split<CR>:w<CR>:Ex<CR>
+nnoremap <leader>s :split<CR>
 nnoremap <leader>t :tabnew<CR>:Ex<CR>
 nnoremap <leader>v :vsplit<CR>:w<CR>:Ex<CR>
 nnoremap <leader>w :w<CR>
@@ -255,5 +249,8 @@ let g:sw_log_to_file = 1
 let g:sw_plugin_path = "/home/atli/.vim/bundle/vim-sql-workbench/"
 
 
-autocmd FileType java nnoremap <buffer> <F5> :Dispatch !gradle build<cr>
-autocmd FileType java nnoremap <buffer> <F6> :Dispatch !gradle run<cr>
+" autocmd FileType java nnoremap <buffer> <F5> :Dispatch !gradle build<cr>
+" autocmd FileType java nnoremap <buffer> <F6> :Dispatch !gradle run<cr>
+
+nmap <F5> :!@%
+
