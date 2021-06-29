@@ -4,6 +4,7 @@
 alias v='vim `f $1*`'
 
 alias s-aliases="source ~/dotfiles/aliases"
+alias s-bash="source ~/.bashrc"
 alias c-aliases="vim ~/dotfiles/aliases; s-aliases; echo aliases auto-sourced"
 alias c-kitty="vim ~/.config/kitty/kitty.conf"
 alias c-vim="vim ~/.vimrc"
