@@ -8,6 +8,6 @@ if echo "$answer" | grep -iq "^y" ; then
 	ln -s ~/dotfiles/bash/bashrc ~/.bashrc
 	ln -s ~/dotfiles/vim/vimrc.vim ~/.vimrc
 	ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-	ln -s ~/dotfiles/deploy/mytheme.omp.json ~/.mytheme.omp.json
+	ln -s ~/dotfiles/mytheme.omp.json ~/.mytheme.omp.json
 fi
 
