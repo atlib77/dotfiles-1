@@ -14,10 +14,28 @@ alias c-ranger="ranger ~/.config/ranger/"
 alias c-git-local="git config -e --local"
 alias c-git-global="git config -e --global"
 alias c-git-system="git config -e --system"
+alias c-onedrive="vim .config/onedrive/config"
 
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias r='source ranger' # by sourcing ranger, when we quit ranger, we are left in the active directory, instead of the beginning directory
-alias m="make"
+alias m="mpv"
+
+alias lettbylgjan="mpv http://icecast.365net.is:8000/orbLettBylgjan.aac"
+alias bylgjan="mpv https://live.365cdn.is/hls-radio/bylgjan/playlist.m3u8"
+alias frettir="mpv ~/frettir.aac"
+
+alias tr="trans -l is"
+alias dic="trans -d -l is"
+alias speak="trans -speak"
+
+ranger_cd() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
+alias r='ranger_cd' # by sourcing ranger, when we quit ranger, we are left in the active directory, instead of the beginning directory
 
 # enable color support of ls and also add handy aliases
 alias ls='ls -h --color=auto'

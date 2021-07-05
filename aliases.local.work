@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Tortoise visual version of git commands
 alias tcommit='TortoiseGitProc.exe /command:commit &'
 alias tlog='TortoiseGitProc.exe /command:log &'

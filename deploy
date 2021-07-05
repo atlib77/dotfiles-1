@@ -1,3 +1,4 @@
+#!/bin/bash
 echo
 echo -n "Would you like to create symbolic links for .vimrc, .tmux.conf and .bashrc? (y/n) "
 old_stty_cfg=$(stty -g)
@@ -7,7 +8,7 @@ stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ; then
 	ln -s ~/dotfiles/bash/bashrc ~/.bashrc
 	ln -s ~/dotfiles/vim/vimrc.vim ~/.vimrc
-	ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+	# ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 	ln -s ~/dotfiles/deploy/mytheme.omp.json ~/.mytheme.omp.json
 fi
 
