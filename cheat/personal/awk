@@ -1,0 +1,47 @@
+# To sum integers from a file or stdin, one integer per line:
+printf '1\n2\n3\n' | awk '{ sum += $1} END {print sum}'
+
+# To use a specific character as separator to sum integers from a file or stdin:
+printf '1:2:3' | awk -F ":" '{print $1+$2+$3}'
+
+# To print a multiplication table:
+seq 9 | sed 'H;g' | awk -v RS='' '{for(i=1;i<=NF;i++)printf("%dx%d=%d%s", i, NR, i*NR, i==NR?"\n":"\t")}'
+
+# To specify an output separator character:
+printf '1 2 3' | awk 'BEGIN {OFS=":"}; {print $1,$2,$3}'
+
+# Atli 2021-06-07
+# Filter lines from a log file for a specific thread, which has a specific start and end rows
+# Good pattern for a awk state machine
+# Useful for e.g. scheduled tasks
+#!/usr/bin/awk -f
+
+BEGIN {
+    thread = "";
+}
+
+# check if column 3 (the actual log line) contains "begin"
+# Set the state to the thread name
+$3 ~/begin/ {
+    thread = $2;
+    # print "Matched begin"
+}
+
+$3 ~/end/ {
+	# Set the state to blank (we're in a no match)
+    thread = "";
+    # print "Matched end"
+}
+
+{
+    # If this row is output from the thread we are monitoring, print out the message
+    if ($2 == thread) {
+		# Print the 3rd column and the rest (since it might contain spaces)
+        for(i=3; i<=NF; ++i) printf $i""FS; print ""
+    }
+}
+
+END {
+  # ...
+}
+
