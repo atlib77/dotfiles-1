@@ -1,0 +1,3 @@
+# Preview the found files using fzf and bat, files having extension java
+fd -e java | fzf --preview 'bat --color "always" {}'
+
