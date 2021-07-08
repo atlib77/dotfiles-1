@@ -8,44 +8,24 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Atli 
-" Plugin 'honza/vim-snippets'
-" Plugin 'kien/ctrlp.vim'
-" Plugin 'valloric/youcompleteme'
-" Plugin 'vim-scripts/taglist.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'bling/vim-airline'
 Plugin 'chrisbra/vim-diff-enhanced'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
-" Plugin 'gioele/vim-autoswap'
-" Plugin 'godlygeek/tabular'
-" Plugin 'majutsushi/tagbar'
-" Plugin 'prabirshrestha/async.vim'
-" Plugin 'cosminadrianpopescu/vim-sql-workbench'
-" Plugin 'prabirshrestha/vim-lsp'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-" Plugin 'tfnico/vim-gradle'
-" Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-" Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'vim-scripts/zoomwin'
-" Plugin 'tommcdo/vim-exchange'
-" Plugin 'xolox/vim-misc'
-" Plugin 'xolox/vim-easytags'
 " All of your Plugins must be added before the following line
  call vundle#end()            " required
 filetype plugin indent on    " required
@@ -55,9 +35,9 @@ filetype plugin indent on    " required
 " General Vim settings
 syntax on
 set autoindent
-set backupdir=~/.vim/backup/
+set backupdir=~/.vim/backup
 set cursorline!
-set dir=~/tmp,~/.tmp,/tmp/,
+set dir=~/tmp,~/.tmp,/tmp
 " set directory=~/.vim/swap/
 set fileignorecase
 set hlsearch
@@ -82,7 +62,7 @@ set splitbelow
 set splitright
 set tabstop=4
 set title titlestring=
-set undodir=~/.vim/undo//
+set undodir=~/.vim/undo
 set updatetime=250
 set wildignore+=*/.git/*,*/.svn/*,*/tmp/*,*/target/*,*/build/*,*/debug/*,*.so,*.swp,*.zip,*.jar,*.war,*.dtd
 " set winheight=30
@@ -106,15 +86,14 @@ if has('clipboard')
 	endif
 endif
 
-" The Silver Searcher
-if executable('ack')
-	" Use ack over grep
+if executable('rg')
+	" Use ripgrep for searching ⚡️
 
-    let g:ackprg = 'ack --nogroup --nocolor --column --vimgrep'
-	set grepprg=ack\ --nogroup\ --nocolor
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep
+    set grepformat=%f:%l:%c:%m
 
-	" Use ack in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ack %s -l --nocolor -g ""'
+	" Use ripgrep in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'rg %s --files --hidden --smart-case --color=never --glob ""'
 else
 	let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 endif
@@ -123,13 +102,8 @@ endif
 " let g:ctrlp_working_path_mode = 'cra'
 let g:ctrlp_use_caching = 1
 let g:ctrlp_custom_ignore = ''
-
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_use_caching = 1
-" let g:ctrlp_extensions = ['branch', 'tabline', 'mixed', 'bookmarkdir', 'buffertag', 'quickfix']
-" let g:ctrlp_extensions = ['branch', 'tabline']
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 
 " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw
@@ -157,23 +131,9 @@ let g:airline#extensions#tabline#fnamecollapse = 0
 let g:autoswap_detect_tmux = 1
 
 autocmd FileType help noremap <buffer> q :q<cr>
-" autocmd Filetype java compiler mvn
-" autocmd Filetype pom compiler mvn
-" autocmd FileType java setlocal omnifunc=javacomplete#Complete " This one gives the autocomplete from java base libraries
-" autocmd FileType java setlocal omnifunc=
 " autocmd bufwritepost .vimrc source $MYVIMRC
-" autocmd bufwritepost aliases source aliases
-" This one gives the autocomplete from java base libraries:
-" autocmd FileType java setlocal omnifunc=javacomplete#Complete
-" autocmd FileType java setlocal omnifunc=
-" Auto resize windows
-" Move around windows 
-" Toggle current fold with space
-" File and Window Management 
-" When searching for next match, center the line on the screen
-" This one conflicted with Ctlr-o and Cltr-l (for jumping through the
-" :jumps list)
-" nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
+" autocmd bufwritepost aliases source ~/dotfiles/aliases
+
 let mapleader=","
 inoremap <leader>q <ESC>:q<CR>
 inoremap <leader>w <Esc>:w<CR>
@@ -189,6 +149,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" Toggle current fold with space
 nnoremap <Space> za
 nnoremap <leader><tab> :set list!<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
@@ -200,19 +161,31 @@ nnoremap <leader>v :vsplit<CR>:w<CR>:Ex<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :x<CR>
 nnoremap <leader>z zMzvzz
+nnoremap <leader>c :set nohlsearch!
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap H 0
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap L $
 nnoremap N Nzzzv
-nnoremap \ :ack<SPACE>
+nnoremap \ :grep<SPACE>
 nnoremap vv 0v$
 
-nmap <F5> :exec '!'.getline('.')
-imap <F5> :exec '!'.getline('.')
+" nmap <F5> :exec '!'.getline('.')
+" imap <F5> :exec '!'.getline('.')
 
-" let g:sw_config_dir = 'C:/Users/atbo/.sqlworkbench/'
-" let g:sw_exe = 'C:/users/atbo/sqlworkbench/sqlwbconsole.exe'
-" let g:sw_plugin_path = 'c:/Users/atbo/.vim/bundle/vim-sql-workbench/'
-" let g:sw_tmp = 'C:/users/atbo/.tmp'
+
+if &diff
+  nnoremap <space> ]cz.
+  nnoremap <S-space> [cz.
+
+  nnoremap <F7> ]cz.
+  nnoremap <F8> [cz.
+  nnoremap <S-F7> [cz.
+
+  nnoremap <F5> :diffupdate<CR>
+
+  set diffopt=filler
+  windo set foldlevel=999999
+  execute "normal \<c-w>\<c-w>"
+endif

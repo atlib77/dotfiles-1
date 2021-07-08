@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# fasd shortcuts
-alias v='vim `f $1*`'
-
 alias s-aliases="source ~/dotfiles/aliases"
 alias s-bash="source ~/.bashrc"
 alias c-aliases="vim ~/dotfiles/aliases; s-aliases; echo aliases auto-sourced"
@@ -15,7 +12,14 @@ alias c-git-local="git config -e --local"
 alias c-git-global="git config -e --global"
 alias c-git-system="git config -e --system"
 alias c-onedrive="vim .config/onedrive/config"
+alias c-rgignore="vim ~/.rgignore"
+alias c-ripgrep-ignore="vim ~/.rgignore"
 
+# fasd shortcuts
+alias v='vim `f $1*`'
+alias j='fasd_cd -d'
+
+alias lc="wc -l"
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias m="mpv"
 

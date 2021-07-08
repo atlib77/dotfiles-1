@@ -91,14 +91,18 @@ fi
 #   exec tmux new-session -A -s main
 # fi
 
+export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --files --glob '!.git/'"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-
 eval "$(fasd --init auto)"
-alias j='z'
+unalias sd
 EDITOR=vim
 PAGER=more
+
 # PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/slimfat.omp.json)"
 eval "$(oh-my-posh --init --shell bash --config ~/.mytheme.omp.json)"
+
+# Cargo is the Rust package manager which I installed to get 'sd' (using 'cargo install sd')
+. "$HOME/.cargo/env"
+
 

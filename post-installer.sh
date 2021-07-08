@@ -6,7 +6,11 @@
 
 sudo apt update
 
-sudo apt install ack silversearcher-ag ripgrep bat fd-find fasd -y
+# vim-gtk installed to get proper clipboard support
+
+sudo apt install vim-gtk ripgrep bat fd-find fasd -y
+
+sudo ln -s `which fd-find` ~/bin/fd
 
 # Tools related to ranger
 sudo apt install ranger atool jq python3-pip w3m-img -y 
